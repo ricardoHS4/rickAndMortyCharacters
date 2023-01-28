@@ -60,8 +60,8 @@ class _CharacterFieldState extends State<CharacterField> {
       return ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         child: Container(
-          width: MediaQuery.of(context).size.width/2-20,
-          height: MediaQuery.of(context).size.width/2-20,
+          width: (MediaQuery.of(context).size.width/2-20).clamp(-200, 200),
+          height: (MediaQuery.of(context).size.width/2-20).clamp(-200, 200),
           child: Stack(
             children: [
               Hero(
