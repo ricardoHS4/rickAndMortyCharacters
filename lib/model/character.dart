@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 
 class Character {
   int id;
@@ -54,19 +51,4 @@ class Character {
       };
 }
 
-Future<List<Character>> getCaracterListFromAPI() async {
-  List<Character> result = [];
 
-  var url = Uri.parse("https://rickandmortyapi.com/api/character");
-  http.Response response = await http.get(url);
-  Map<String, dynamic> data = jsonDecode(response.body);
-  dynamic charactersList = data['results']; 
-
-  print(charactersList[0]['image']);
-
-  for(int x=0;x<charactersList.length;x++){
-    result.add(Character.fromJson(charactersList[x]));
-  }
-
-  return result;
-}

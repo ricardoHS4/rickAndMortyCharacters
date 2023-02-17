@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/model/character.dart';
+import 'package:rick_and_morty/api.dart';
 import 'package:rick_and_morty/widgets/characterTile.dart';
 
 class Home extends StatelessWidget {
@@ -9,7 +9,15 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset('assets/Rick_and_Morty_Logo.png', fit: BoxFit.contain, height: 56),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Rick and Morty characters!"),
+            const SizedBox(width: 12),
+            Image.asset('assets/logo_white.png',
+                fit: BoxFit.contain, height: 48),
+          ],
+        ),
         centerTitle: true,
       ),
       body: FutureBuilder(
@@ -28,12 +36,20 @@ class Home extends StatelessWidget {
             return Text(snapshot.error.toString());
           } else {
             final characters = snapshot.data!;
+            return ListView.builder(
+              itemCount: characters.length,
+              itemBuilder: (context, index) {
+                 return CharacterTile(character: characters[index]);
+              },
+            );
+            /*
             List<Widget> characterTiles = [];
             for (int x = 0; x < characters.length; x++) {
               characterTiles.add(CharacterTile(character: characters[x]));
             }
             return SingleChildScrollView(
                 child: Column(children: characterTiles));
+                */
           }
         },
       ),
