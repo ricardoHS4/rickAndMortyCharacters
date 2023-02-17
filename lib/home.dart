@@ -8,7 +8,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Rick and Morty!"), centerTitle: true),
+      appBar: AppBar(
+        title: Image.asset('assets/Rick_and_Morty_Logo.png', fit: BoxFit.contain, height: 56),
+        centerTitle: true,
+      ),
       body: FutureBuilder(
         future: getCaracterListFromAPI(),
         builder: (context, snapshot) {
@@ -29,7 +32,8 @@ class Home extends StatelessWidget {
             for (int x = 0; x < characters.length; x++) {
               characterTiles.add(CharacterTile(character: characters[x]));
             }
-            return SingleChildScrollView(child: Column(children: characterTiles));
+            return SingleChildScrollView(
+                child: Column(children: characterTiles));
           }
         },
       ),
