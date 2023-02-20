@@ -15,8 +15,9 @@ Widget footer() {
     child: RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-        style: const TextStyle(color: Colors.white, fontSize: 11),
+        style: const TextStyle(color: Colors.white, fontSize: 10),
         children: [
+          const TextSpan(text: "v1.0.3 "),
           const TextSpan(text: "Developed by "),
           TextSpan(
             style: const TextStyle(fontWeight: FontWeight.bold),
@@ -24,11 +25,25 @@ Widget footer() {
             recognizer: TapGestureRecognizer()
               ..onTap = () async {
                 var url = "https://ricardohs.com/";
+                try {
+                  await launchUrlString(url,
+                      mode: LaunchMode.externalApplication);
+                } catch (e) {
+                  print(e);
+                }
+                /*
+                if (!await launchUrlString(url,
+                    mode: LaunchMode.externalApplication)) {
+                  throw Exception("Could not launch $url");
+                }
+                */
+                /*
                 if (await canLaunchUrlString(url)) {
                   await launchUrlString(url);
                 } else {
                   throw 'Could not launch $url';
                 }
+                */
               },
           ),
           TextSpan(text: "$formattedDate, powered by "),
@@ -38,11 +53,24 @@ Widget footer() {
             recognizer: TapGestureRecognizer()
               ..onTap = () async {
                 var url = "https://rickandmortyapi.com/";
+                try {
+                  await launchUrlString(url,
+                      mode: LaunchMode.externalApplication);
+                } catch (e) {
+                  print(e);
+                }
+                /*
+                if (!await launchUrlString(url,
+                    mode: LaunchMode.externalApplication)) {
+                  throw Exception("Could not launch $url");
+                }
+                */
+                /*
                 if (await canLaunchUrlString(url)) {
                   await launchUrlString(url);
                 } else {
                   throw 'Could not launch $url';
-                }
+                }*/
               },
           ),
         ],
